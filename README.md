@@ -15,6 +15,8 @@ chmod a+x ./webOS_TV_23_Simulator_1.3.0.appimage
 
 ### Install ares-cli
 https://github.com/webosose/ares-cli
+https://webostv.developer.lge.com/
+https://connectsdk.com/en/latest/index.html
 
 ``
 npm install -g @webosose/ares-cli
