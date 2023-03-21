@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  angular:
+    container_name: angular-tv
+    build:
+      context: .docker/angular
+      dockerfile: Dockerfile
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./frontend:/var/www
+
+  webos:
+    container_name: webos-tv
+    build:
+      context: .docker/webos
+      dockerfile: Dockerfile
+    volumes:
+      - ./sampleApp:/var/www
+
+networks:
+  default:
+    name: webos
