@@ -1,10 +1,14 @@
 [
   {
-    "title": "Big Buck Bunny",
-    "url": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/al_aoula_inter/hls_snrt/index.m3u8"
+    "title": "qurantvsa",
+    "url": "https://cllive.itworkscdn.net/ksaquranlive/token=nva=1679456405~dirs=1~hash=016d38a5cb4be33f56744/ksaquran.smil/playlist_dvr.m3u8"
   },
   {
-    "title": "Sintel",
-    "url": "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    "title": "sunnatvsa",
+    "url": "https://cllive.itworkscdn.net/ksasunnalive/token=nva=1679456679~dirs=1~hash=0c1ce0a0d0b3a319329a4/ksasunna.smil/playlist_dvr.m3u8"
+  },
+  {
+    "title": "al_aoula_inter",
+    "url": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/al_aoula_inter/hls_snrt/index.m3u8"
   }
 ]
