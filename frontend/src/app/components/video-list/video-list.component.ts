@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { VideoService } from 'src/app/services/video.service';
-import PlaylistItem from 'src/app/interfaces/playlist-item.interface';
-import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {FocusKeyManager} from "@angular/cdk/a11y";
+import {VideoItemComponent} from "../video-item/video-item.component";
+import {ChannelDataService} from "../../services/channel.data-service";
+import {Channel} from "../../models/channel.model";
 
 @Component({
   selector: 'app-video-list',
@@ -9,45 +10,27 @@ import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
   styleUrls: ['./video-list.component.scss']
 })
 export class VideoListComponent implements OnInit {
-  public playNext: boolean = false;
-  public videoEnded: boolean = false;
+  @ViewChildren(VideoItemComponent) items!: QueryList<VideoItemComponent>;
+  keyManager!: FocusKeyManager<VideoItemComponent>;
+
   public videoList: ({ name: string, selected: boolean })[] = [];
-  private list: PlaylistItem[] = [];
-  private activeVideo = 0;
+  private list: Channel[] = [];
+
 
   constructor(
-    private videoService: VideoService,
-    private videoPlaylistService: VideoPlaylistService
+    private channelDataService: ChannelDataService,
   ) {}
 
   public ngOnInit() {
-    this.videoPlaylistService.list$.subscribe(list => (this.list = list));
-    this.videoPlaylistService.currentVideo$.subscribe(currentVideo => {
-      this.videoList = this.list.map(item => ({
-        name: item.title,
-        selected: item.url === currentVideo
-      }));
-    });
-    this.videoPlaylistService.fetchList('./assets/playlist.json');
-    this.videoPlaylistService
-      .shouldPlayNext$
-      .subscribe(playNext => (this.playNext = playNext));
-    this.videoService.videoEnded$.subscribe(ended => {
-      if (this.playNext && ended) {
-        this.videoPlaylistService.playNextVideo();
-        this.videoService.play();
-      }
-    });
+
+    this.channelDataService.all()
+      .subscribe((ELEMENT_DATA) => {
+        this.list = ELEMENT_DATA
+      });
   }
 
-  public playIt(index: number): void {
-    this.videoPlaylistService.setCurrentVideoByIndex(index);
-    this.videoService.play();
-    this.activeVideo = index;
-  }
-
-  public onChange(): void {
-    this.playNext = !this.playNext;
-    this.videoPlaylistService.setShouldPlayNext(this.playNext);
+  ngAfterViewInit() {
+    this.keyManager = new FocusKeyManager<VideoItemComponent>(this.items).withWrap();
+    this.keyManager.setFirstItemActive();
   }
 }

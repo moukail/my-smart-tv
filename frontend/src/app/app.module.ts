@@ -15,6 +15,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {VideoItemComponent} from "./components/video-item/video-item.component";
+import {EntityStoreModule} from "./entity-store-module";
+import {EntityDataModule} from "@ngrx/data";
+import { StoreModule } from '@ngrx/store';
+import {entityConfig} from "./entity-metadata";
+import {metaReducers, reducers} from "./reducers";
 
 @NgModule({
   declarations: [
@@ -25,16 +32,28 @@ import { MatListModule } from '@angular/material/list';
     ProgressBarComponent,
     ControlVolumeComponent,
     TimeComponent,
-    VideoListComponent
+    VideoListComponent,
+    VideoItemComponent
+
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatSlideToggleModule,
-    MatProgressSpinnerModule,
-    MatSliderModule,
-    MatListModule
-  ],
+    imports: [
+      BrowserModule,
+      AppRoutingModule,
+      MatSlideToggleModule,
+      MatProgressSpinnerModule,
+      MatSliderModule,
+      MatListModule,
+      MatGridListModule,
+      StoreModule.forRoot(reducers, {
+        metaReducers,
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true
+        }
+      }),
+      EntityDataModule.forRoot(entityConfig),
+      EntityStoreModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
