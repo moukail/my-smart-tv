@@ -3,6 +3,13 @@ import { VideoService } from 'src/app/services/video.service';
 import PlaylistItem from 'src/app/interfaces/playlist-item.interface';
 import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
@@ -14,6 +21,13 @@ export class VideoListComponent implements OnInit {
   public videoList: ({ name: string, selected: boolean })[] = [];
   private list: PlaylistItem[] = [];
   private activeVideo = 0;
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
+  ];
 
   constructor(
     private videoService: VideoService,

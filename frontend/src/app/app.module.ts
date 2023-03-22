@@ -15,6 +15,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { MatListModule } from '@angular/material/list';
     TimeComponent,
     VideoListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatSlideToggleModule,
-    MatProgressSpinnerModule,
-    MatSliderModule,
-    MatListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatSlideToggleModule,
+        MatProgressSpinnerModule,
+        MatSliderModule,
+        MatListModule,
+        MatGridListModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

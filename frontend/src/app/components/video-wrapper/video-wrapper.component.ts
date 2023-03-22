@@ -55,6 +55,7 @@ export class VideoWrapperComponent implements OnInit {
     this.video.nativeElement.addEventListener('canplay', this.videoListeners['canplay'])
     this.video.nativeElement.addEventListener('seeking', this.videoListeners['seeking'])
     this.video.nativeElement.addEventListener('timeupdate', this.videoListeners['timeupdate'])
+
   }
 
   /** Play/Pause video on click */

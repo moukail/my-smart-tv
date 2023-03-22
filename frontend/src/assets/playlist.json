@@ -1,5 +1,29 @@
 [
   {
+    "title": "Al Aoula Inter",
+    "url": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/al_aoula_inter/hls_snrt/index.m3u8"
+  },
+  {
+    "title": "Arriadia",
+    "url": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/arriadia/hls_snrt/index.m3u8"
+  },
+  {
+    "title": "Al Maghribia",
+    "url": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/al_maghribia_snrt/hls_snrt/index.m3u8"
+  },
+  {
+    "title": "MEDI1TV Arabic",
+    "url": "http://streaming1.medi1tv.com/live/smil:medi1ar.smil/playlist.m3u8?DVR"
+  },
+  {
+    "title": "Aljazeera",
+    "url": "https://live-hls-web-aja.getaj.net/AJA/index.m3u8"
+  },
+  {
+    "title": "قناة السعودية",
+    "url": "https://cllive.itworkscdn.net/ksa1live/token=nva=1679496016~dirs=1~hash=0691d6bff53b4a144fc83/ksa1.smil/playlist_dvr.m3u8"
+  },
+  {
     "title": "qurantvsa",
     "url": "https://cllive.itworkscdn.net/ksaquranlive/token=nva=1679456405~dirs=1~hash=016d38a5cb4be33f56744/ksaquran.smil/playlist_dvr.m3u8"
   },
