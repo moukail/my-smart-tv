@@ -21,7 +21,7 @@ import {EntityStoreModule} from "./entity-store-module";
 import {EntityDataModule} from "@ngrx/data";
 import { StoreModule } from '@ngrx/store';
 import {entityConfig} from "./entity-metadata";
-import {metaReducers, reducers} from "./reducers";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -37,6 +37,9 @@ import {metaReducers, reducers} from "./reducers";
 
   ],
     imports: [
+      HttpClientModule,
+      StoreModule.forRoot(),
+      EntityDataModule.forRoot(entityConfig),
       BrowserModule,
       AppRoutingModule,
       MatSlideToggleModule,
@@ -44,14 +47,6 @@ import {metaReducers, reducers} from "./reducers";
       MatSliderModule,
       MatListModule,
       MatGridListModule,
-      StoreModule.forRoot(reducers, {
-        metaReducers,
-        runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true
-        }
-      }),
-      EntityDataModule.forRoot(entityConfig),
       EntityStoreModule
     ],
   providers: [],

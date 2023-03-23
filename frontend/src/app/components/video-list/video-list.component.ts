@@ -13,8 +13,7 @@ export class VideoListComponent implements OnInit {
   @ViewChildren(VideoItemComponent) items!: QueryList<VideoItemComponent>;
   keyManager!: FocusKeyManager<VideoItemComponent>;
 
-  public videoList: ({ name: string, selected: boolean })[] = [];
-  private list: Channel[] = [];
+  list: Channel[] = [];
 
 
   constructor(

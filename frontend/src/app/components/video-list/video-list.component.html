@@ -1,5 +1,11 @@
 <div class="video-list">
   <mat-grid-list cols="6" rowHeight="100px" role="list" class="list">
-    <app-video-item *ngFor="let video of videoList"></app-video-item>
+    <mat-grid-tile
+      role="listitem"
+      class="list-item"
+      [colspan]="1"
+      [rowspan]="1" *ngFor="let channel of list">
+      <app-video-item [channel]="channel"></app-video-item>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
