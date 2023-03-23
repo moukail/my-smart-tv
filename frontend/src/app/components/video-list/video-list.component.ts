@@ -14,7 +14,7 @@ export class VideoListComponent implements OnInit {
   keyManager!: FocusKeyManager<VideoItemComponent>;
 
   list: Channel[] = [];
-
+  activeVideo: string = '';
 
   constructor(
     private channelDataService: ChannelDataService,
@@ -31,5 +31,11 @@ export class VideoListComponent implements OnInit {
   ngAfterViewInit() {
     this.keyManager = new FocusKeyManager<VideoItemComponent>(this.items).withWrap();
     this.keyManager.setFirstItemActive();
+  }
+
+  public playIt(id: string): void {
+    //this.videoPlaylistService.setCurrentVideoByIndex(index);
+    //this.videoService.play();
+    this.activeVideo = id;
   }
 }
