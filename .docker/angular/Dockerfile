@@ -4,7 +4,7 @@ RUN apk --update --no-cache add bash nano
 
 RUN echo | npm install -g @angular/cli@15.2.4
 
-WORKDIR /var/www
+WORKDIR /var/www/frontend
 
 ADD docker-init.sh /home/
 RUN chmod +x /home/docker-init.sh

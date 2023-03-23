@@ -11,7 +11,7 @@ import {Channel} from "../../models/channel.model";
 export class VideoItemComponent implements FocusableOption, OnInit {
   @Input() channel!: Channel;
 
-  private activeVideo = 0;
+  activeVideo: string = '';
 
   constructor(private element: ElementRef,
     private videoService: VideoService,
@@ -24,10 +24,10 @@ export class VideoItemComponent implements FocusableOption, OnInit {
     this.element.nativeElement.focus();
   }
 
-  public playIt(index: number): void {
+  public playIt(id: string): void {
     //this.videoPlaylistService.setCurrentVideoByIndex(index);
     this.videoService.play();
-    this.activeVideo = index;
+    this.activeVideo = id;
   }
 
 }

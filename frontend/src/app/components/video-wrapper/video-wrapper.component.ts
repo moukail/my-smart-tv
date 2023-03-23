@@ -1,4 +1,9 @@
-import { Component, ElementRef, Input, ViewChild, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit
+} from '@angular/core';
 
 import { VideoService } from 'src/app/services/video.service';
 import { VolumeService } from 'src/app/services/volume.service';
@@ -104,7 +109,7 @@ export class VideoWrapperComponent implements OnInit {
    */
   private subscriptions() {
     this.videoService.playingState$.subscribe(playing => this.playPauseVideo(playing));
-    //this.videoPlaylistService.currentVideo$.subscribe(video => this.load(video));
+    this.videoService.currentVideo$.subscribe(video => this.load(video));
     this.videoTimeService.currentTime$.subscribe(currentTime => (this.video.nativeElement.currentTime = currentTime));
     this.volumeService.volumeValue$.subscribe(volume => (this.video.nativeElement.volume = volume));
     this.videoService.loading$.subscribe(loading => (this.loading = loading));

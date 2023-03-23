@@ -1,8 +1,10 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {FocusKeyManager} from "@angular/cdk/a11y";
-import {VideoItemComponent} from "../video-item/video-item.component";
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {ChannelDataService} from "../../services/channel.data-service";
 import {Channel} from "../../models/channel.model";
+import {VideoService} from "../../services/video.service";
 
 @Component({
   selector: 'app-video-list',
@@ -10,32 +12,25 @@ import {Channel} from "../../models/channel.model";
   styleUrls: ['./video-list.component.scss']
 })
 export class VideoListComponent implements OnInit {
-  @ViewChildren(VideoItemComponent) items!: QueryList<VideoItemComponent>;
-  keyManager!: FocusKeyManager<VideoItemComponent>;
-
   list: Channel[] = [];
-  activeVideo: string = '';
+  activeChannel!: Channel;
 
   constructor(
     private channelDataService: ChannelDataService,
+    private videoService: VideoService,
   ) {}
 
   public ngOnInit() {
-
     this.channelDataService.all()
       .subscribe((ELEMENT_DATA) => {
         this.list = ELEMENT_DATA
+        this.playIt(ELEMENT_DATA[4]);
       });
   }
 
-  ngAfterViewInit() {
-    this.keyManager = new FocusKeyManager<VideoItemComponent>(this.items).withWrap();
-    this.keyManager.setFirstItemActive();
-  }
-
-  public playIt(id: string): void {
-    //this.videoPlaylistService.setCurrentVideoByIndex(index);
-    //this.videoService.play();
-    this.activeVideo = id;
+  public playIt(channel: Channel): void {
+    this.videoService.setCurrentVideoByIndex(channel);
+    this.videoService.play();
+    this.activeChannel = channel;
   }
 }

@@ -1,14 +1,12 @@
 <div class="video-list">
-  <mat-grid-list cols="6" rowHeight="100px" role="list" class="list">
-    <mat-grid-tile *ngFor="let channel of list"
-      role="listitem"
-      class="list-item"
-      [ngClass]="{ active: (channel.id == activeVideo) }"
-      [colspan]="1"
-      [rowspan]="1"
-      (click)="playIt(channel.id)"
-    >
-      <app-video-item [channel]="channel"></app-video-item>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-selection-list #gridList [multiple]="false">
+    <mat-list-option *ngFor="let channel of list"
+                   #gridItem
+                     class="list-item"
+                   [ngClass]="{ active: (channel == activeChannel) }"
+                     [value]="channel"
+                     (selectedChange)="playIt(channel)"
+    >{{channel.name}}
+    </mat-list-option>
+  </mat-selection-list>
 </div>
