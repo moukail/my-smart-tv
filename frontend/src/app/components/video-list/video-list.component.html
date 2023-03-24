@@ -1,4 +1,5 @@
-<div class="video-list">
+<div class="video-list" *ngIf="showList">
+  <h1>Channel List</h1>
   <mat-selection-list #gridList [multiple]="false">
     <mat-list-option *ngFor="let channel of list"
                    #gridItem
