@@ -19,8 +19,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd ./frontend
           npm install
           npm build
+          cd ../
 
       - name: rsync deployment
         env:
@@ -31,4 +33,4 @@ jobs:
           chmod 600 ./id_ed25519
 
           echo "::group::Deploy"
-          rsync -avz --delete --rsync-path="sudo rsync" -e 'ssh -i ./id_ed25519 -o StrictHostKeyChecking=no' --exclude /id_ed25519 --exclude /.git/ --exclude /.github/ ./ ${{vars.SSH_USER}}@${{vars.SSH_HOST}}:${{env.dest}}
+          rsync -avz --delete --rsync-path="sudo rsync" -e 'ssh -i ./id_ed25519 -o StrictHostKeyChecking=no' --exclude /id_ed25519 --exclude /.git/ --exclude /.github/ ./frontend/dist ${{vars.SSH_USER}}@${{vars.SSH_HOST}}:${{env.dest}}
