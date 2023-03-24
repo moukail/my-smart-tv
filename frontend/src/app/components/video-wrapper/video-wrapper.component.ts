@@ -6,8 +6,6 @@ import {
 } from '@angular/core';
 
 import { VideoService } from 'src/app/services/video.service';
-import { VolumeService } from 'src/app/services/volume.service';
-import { VideoTimeService } from 'src/app/services/video-time.service';
 import Hls from "hls.js";
 
 @Component({
@@ -21,31 +19,14 @@ export class VideoWrapperComponent implements OnInit {
   public playing: boolean = false;
   private hls = new Hls();
   private videoListeners = {
-    loadedmetadata: () => this.videoTimeService.setVideoDuration(this.video.nativeElement.duration),
     canplay: () => this.videoService.setLoading(false),
     seeking: () => this.videoService.setLoading(true),
-    timeupdate: () => {
-      if (!this.ignore) {
-        this.videoTimeService.setVideoProgress(this.video.nativeElement.currentTime);
-      }
-      if (
-        this.video.nativeElement.currentTime === this.video.nativeElement.duration &&
-        this.video.nativeElement.duration > 0
-      ) {
-        this.videoService.pause();
-        this.videoService.setVideoEnded(true);
-      } else {
-        this.videoService.setVideoEnded(false);
-      }
-    }
   };
 
   @ViewChild('video', { static: true }) video!: ElementRef<HTMLVideoElement>;
 
   constructor(
     private videoService: VideoService,
-    private volumeService: VolumeService,
-    private videoTimeService: VideoTimeService,
     //private videoPlaylistService: VideoPlaylistService
   ) {}
 
@@ -55,10 +36,8 @@ export class VideoWrapperComponent implements OnInit {
       videoListener => console.log(videoListener) //this.video.nativeElement.addEventListener(videoListener, this.videoListeners[videoListener])
     );
 
-    this.video.nativeElement.addEventListener('loadedmetadata', this.videoListeners['loadedmetadata'])
     this.video.nativeElement.addEventListener('canplay', this.videoListeners['canplay'])
     this.video.nativeElement.addEventListener('seeking', this.videoListeners['seeking'])
-    this.video.nativeElement.addEventListener('timeupdate', this.videoListeners['timeupdate'])
 
   }
 
@@ -110,10 +89,7 @@ export class VideoWrapperComponent implements OnInit {
   private subscriptions() {
     this.videoService.playingState$.subscribe(playing => this.playPauseVideo(playing));
     this.videoService.currentVideo$.subscribe(video => this.load(video));
-    this.videoTimeService.currentTime$.subscribe(currentTime => (this.video.nativeElement.currentTime = currentTime));
-    this.volumeService.volumeValue$.subscribe(volume => (this.video.nativeElement.volume = volume));
     this.videoService.loading$.subscribe(loading => (this.loading = loading));
-    this.videoTimeService.ignore$.subscribe(ignore => (this.ignore = ignore));
   }
 
   /**

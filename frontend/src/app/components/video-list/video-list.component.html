@@ -1,13 +1,9 @@
 <div class="video-list" *ngIf="showList">
   <h1>Channel List</h1>
-  <mat-selection-list #gridList [multiple]="false">
-    <mat-list-option *ngFor="let channel of list"
-                   #gridItem
-                     class="list-item"
-                   [ngClass]="{ active: (channel == activeChannel) }"
-                     [value]="channel"
-                     (selectedChange)="playIt(channel)"
-    >{{channel.name}}
+  <mat-selection-list [multiple]="false">
+    <mat-list-option class="list-item" *ngFor="let channel of list" [value]="channel" (selectedChange)="playIt(channel)"
+      [ngClass]="{ active: (channel == activeChannel) }">
+      {{channel.name}}
     </mat-list-option>
   </mat-selection-list>
 </div>
