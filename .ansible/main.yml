@@ -5,7 +5,6 @@
 
   vars:
     root_dir: /var/www/{{ inventory_hostname }}
-    acme_email: i.moukafih@gmail.com
 
   tasks:
     - ping: ~
