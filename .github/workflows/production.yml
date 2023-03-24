@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd ./frontend
-          yarn install --production=false
+          npm install
           ng build --configuration production
           cd ../
 
