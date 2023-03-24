@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { MatSliderChange } from '@angular/material/slider';
 import { VideoTimeService } from 'src/app/services/video-time.service';
-import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
 
 @Component({
   selector: 'app-controls',
@@ -20,7 +19,7 @@ export class ControlsComponent implements OnInit {
   constructor(
     private videoService: VideoService,
     private videoTimeService: VideoTimeService,
-    private videoPlaylistService: VideoPlaylistService
+    //private videoPlaylistService: VideoPlaylistService
   ) {}
 
   public ngOnInit() {
@@ -47,7 +46,7 @@ export class ControlsComponent implements OnInit {
   }
 
   public onNextClick() {
-    this.videoPlaylistService.playNextVideo();
+    //this.videoPlaylistService.playNextVideo();
     this.videoService.play();
   }
 

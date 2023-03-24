@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { VideoService } from 'src/app/services/video.service';
-import PlaylistItem from 'src/app/interfaces/playlist-item.interface';
-import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
+import {
+  Component, HostListener,
+  OnInit
+} from '@angular/core';
+import {ChannelDataService} from "../../services/channel.data-service";
+import {Channel} from "../../models/channel.model";
+import {VideoService} from "../../services/video.service";
 
 export interface Tile {
   color: string;
@@ -16,11 +19,42 @@ export interface Tile {
   styleUrls: ['./video-list.component.scss']
 })
 export class VideoListComponent implements OnInit {
-  public playNext: boolean = false;
-  public videoEnded: boolean = false;
-  public videoList: ({ name: string, selected: boolean })[] = [];
-  private list: PlaylistItem[] = [];
-  private activeVideo = 0;
+  list: Channel[] = [];
+  activeChannel!: Channel;
+  public showList = false;
+
+  @HostListener('document:keydown', ['$event'])
+  onKeydownHandler(event: any) {
+    console.log('onKeydownHandler', event.keyCode);
+    if (event.keyCode == 13){
+      console.log('onKeydownHandler', 'enter');
+      this.showList = false;
+    }
+    if (event.keyCode == 38){
+      console.log('onKeydownHandler', 'keyUp');
+      this.showList = true;
+    }
+    if (event.keyCode == 40){
+      console.log('onKeydownHandler', 'keyDown');
+      this.showList = true;
+    }
+    if (event.keyCode == 37){
+      console.log('onKeydownHandler', 'keyLeft');
+      this.showList = true;
+    }
+    if (event.keyCode == 39){
+      console.log('onKeydownHandler', 'keyRight');
+      this.showList = true;
+    }
+    if (event.keyCode == 49){
+      console.log('onKeydownHandler', '1');
+      this.playIt(this.list[0]);
+    }
+    if (event.keyCode == 50){
+      console.log('onKeydownHandler', '2');
+      this.playIt(this.list[1]);
+    }
+  }
 
   tiles: Tile[] = [
     {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
@@ -30,38 +64,22 @@ export class VideoListComponent implements OnInit {
   ];
 
   constructor(
+    private channelDataService: ChannelDataService,
     private videoService: VideoService,
-    private videoPlaylistService: VideoPlaylistService
   ) {}
 
   public ngOnInit() {
-    this.videoPlaylistService.list$.subscribe(list => (this.list = list));
-    this.videoPlaylistService.currentVideo$.subscribe(currentVideo => {
-      this.videoList = this.list.map(item => ({
-        name: item.title,
-        selected: item.url === currentVideo
-      }));
-    });
-    this.videoPlaylistService.fetchList('./assets/playlist.json');
-    this.videoPlaylistService
-      .shouldPlayNext$
-      .subscribe(playNext => (this.playNext = playNext));
-    this.videoService.videoEnded$.subscribe(ended => {
-      if (this.playNext && ended) {
-        this.videoPlaylistService.playNextVideo();
-        this.videoService.play();
-      }
-    });
+    this.channelDataService.all()
+      .subscribe((ELEMENT_DATA) => {
+        this.list = ELEMENT_DATA
+        this.playIt(this.list[4]);
+      });
   }
 
-  public playIt(index: number): void {
-    this.videoPlaylistService.setCurrentVideoByIndex(index);
+  public playIt(channel: Channel): void {
+
+    this.videoService.setCurrentVideoByIndex(channel);
     this.videoService.play();
-    this.activeVideo = index;
-  }
-
-  public onChange(): void {
-    this.playNext = !this.playNext;
-    this.videoPlaylistService.setShouldPlayNext(this.playNext);
+    this.activeChannel = channel;
   }
 }

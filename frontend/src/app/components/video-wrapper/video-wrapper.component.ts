@@ -1,9 +1,13 @@
-import { Component, ElementRef, Input, ViewChild, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit
+} from '@angular/core';
 
 import { VideoService } from 'src/app/services/video.service';
 import { VolumeService } from 'src/app/services/volume.service';
 import { VideoTimeService } from 'src/app/services/video-time.service';
-import { VideoPlaylistService } from 'src/app/services/video-playlist.service';
 import Hls from "hls.js";
 
 @Component({
@@ -42,7 +46,7 @@ export class VideoWrapperComponent implements OnInit {
     private videoService: VideoService,
     private volumeService: VolumeService,
     private videoTimeService: VideoTimeService,
-    private videoPlaylistService: VideoPlaylistService
+    //private videoPlaylistService: VideoPlaylistService
   ) {}
 
   public ngOnInit() {
@@ -61,7 +65,7 @@ export class VideoWrapperComponent implements OnInit {
   /** Play/Pause video on click */
   public onVideoClick() {
       if (this.playing) {
-        this.videoService.pause();
+        //this.videoService.pause();
       } else {
         this.videoService.play();
       }
@@ -105,7 +109,7 @@ export class VideoWrapperComponent implements OnInit {
    */
   private subscriptions() {
     this.videoService.playingState$.subscribe(playing => this.playPauseVideo(playing));
-    this.videoPlaylistService.currentVideo$.subscribe(video => this.load(video));
+    this.videoService.currentVideo$.subscribe(video => this.load(video));
     this.videoTimeService.currentTime$.subscribe(currentTime => (this.video.nativeElement.currentTime = currentTime));
     this.volumeService.volumeValue$.subscribe(volume => (this.video.nativeElement.volume = volume));
     this.videoService.loading$.subscribe(loading => (this.loading = loading));

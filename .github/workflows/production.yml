@@ -1,0 +1,34 @@
+name: Production
+
+on:
+  push:
+    branches: [
+      "master",
+    ]
+
+permissions:
+  contents: read
+
+jobs:
+  production:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm build
+
+      - name: rsync deployment
+        env:
+          dest: '/var/www/my-tv-webos.moukafih.nl'
+        run: |
+          echo "::group::Prepare Certificate"
+          echo "${{secrets.OPENSSH_KEY}}" > id_ed25519
+          chmod 600 ./id_ed25519
+
+          echo "::group::Deploy"
+          rsync -avz --delete --rsync-path="sudo rsync" -e 'ssh -i ./id_ed25519 -o StrictHostKeyChecking=no' --exclude /id_ed25519 --exclude /.git/ --exclude /.github/ ./ ${{vars.SSH_USER}}@${{vars.SSH_HOST}}:${{env.dest}}

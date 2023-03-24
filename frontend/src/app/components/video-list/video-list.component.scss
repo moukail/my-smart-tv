@@ -15,7 +15,11 @@
     width: 100%;
   }
 
+  .list, .list-item:focus {
+    background-color: lightblue;
+  }
+
   .list-item.active {
-    background-color: #ff98bb;
+    background-color: #ee6795;
   }
 }
