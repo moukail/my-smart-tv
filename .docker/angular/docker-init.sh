@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
-
-rm -rf node_modules .angular package-lock.json
-
-npm install
-#npm run build
-
+echo "-------------------------------------------------------------------"
+echo "-                        clean up                                 -"
+echo "-------------------------------------------------------------------"
+rm -rf node_modules .angular package-lock.json yarn.lock
+echo "-------------------------------------------------------------------"
+echo "-                        install                                  -"
+echo "-------------------------------------------------------------------"
+yarn install
+yarn build
+echo "-------------------------------------------------------------------"
+echo "-                        serve                                    -"
+echo "-------------------------------------------------------------------"
 ng serve --host=0.0.0.0 --port=4200
 
 tail -f /dev/null
