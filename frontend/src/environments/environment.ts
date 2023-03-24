@@ -1,6 +1,5 @@
 export const environment = {
-  appName: 'MKB DEV',
   production: false,
   //domain: hostname,
-  apiUrl: 'http://localhost:8001',
+  apiUrl: 'https://moukafih.nl/api/v1/channel/list',
 };

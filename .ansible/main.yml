@@ -17,7 +17,7 @@
         group: "nginx"
         recurse: yes
       loop:
-        - "{{ root_dir }}"
+        - "{{ root_dir }}/dist/frontend/"
 
     - name: check if letsencrypt dir exists
       stat:
