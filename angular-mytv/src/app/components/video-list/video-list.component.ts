@@ -33,20 +33,24 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
     if (event.keyCode == 38){
       console.log('onKeydownHandler', 'keyUp');
       this.showList = true;
+      setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 40){
       console.log('onKeydownHandler', 'keyDown');
       this.showList = true;
+      setTimeout(() => this.showList = false, 10000);
       //this.inputFocused = true;
       //setTimeout(() => {this.inputFocused = false});
     }
     if (event.keyCode == 37){
       console.log('onKeydownHandler', 'keyLeft');
       this.showList = true;
+      setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 39){
       console.log('onKeydownHandler', 'keyRight');
       this.showList = true;
+      setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 49){
       console.log('onKeydownHandler', '1');
@@ -65,6 +69,7 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
 
   public ngOnInit() {
     console.log('ngOnInit');
+
     this.channelDataService.all()
       .subscribe((ELEMENT_DATA) => {
         this.list = ELEMENT_DATA

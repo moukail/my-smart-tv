@@ -14,7 +14,4 @@ export class FocusDirective {
   constructor(@Inject(ElementRef) private element: ElementRef) {
     setTimeout(() => this.element.nativeElement.focus());
   }
-  protected ngOnChanges() {
-    //this.element.nativeElement.focus();
-  }
 }
