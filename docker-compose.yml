@@ -17,7 +17,7 @@ services:
       context: .docker/webos
       dockerfile: Dockerfile
     volumes:
-      - ./sampleApp:/var/www
+      - ./:/var/www
 
 networks:
   default:

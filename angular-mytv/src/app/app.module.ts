@@ -11,21 +11,29 @@ import { EntityDataModule } from "@ngrx/data";
 import { StoreModule } from '@ngrx/store';
 import { entityConfig } from "./entity-metadata";
 import { HttpClientModule } from "@angular/common/http";
+import {NavigableListDirective} from "./directives/NavigableListDirective";
+import {NavigableListItemDirective} from "./directives/NavigableListItemDirective";
+import {A11yModule} from "@angular/cdk/a11y";
+import {FocusDirective} from "./directives/FocusDirective";
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoWrapperComponent,
     VideoListComponent,
+    NavigableListDirective,
+    NavigableListItemDirective,
+    FocusDirective
   ],
     imports: [
-      HttpClientModule,
-      StoreModule.forRoot(),
-      EntityDataModule.forRoot(entityConfig),
-      BrowserModule,
-      MatProgressSpinnerModule,
-      MatListModule,
-      EntityStoreModule
+        HttpClientModule,
+        StoreModule.forRoot(),
+        EntityDataModule.forRoot(entityConfig),
+        BrowserModule,
+        MatProgressSpinnerModule,
+        MatListModule,
+        EntityStoreModule,
+        A11yModule
     ],
   providers: [],
   bootstrap: [AppComponent]

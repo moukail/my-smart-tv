@@ -1,10 +1,10 @@
 {
-  "id": "nl.moukafih.webos-tv",
+  "id": "nl.moukafih.webos-mytv",
   "version": "1.0.0",
   "vendor": "My Company",
   "type": "web",
   "main": "index.html",
-  "title": "WebOS TV",
+  "title": "new app",
   "icon": "icon.png",
   "requiredPermissions": [
     "time.query",

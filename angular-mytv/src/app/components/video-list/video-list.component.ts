@@ -1,33 +1,33 @@
 import {
-  Component, HostListener,
-  OnInit
+  AfterContentInit, AfterViewInit,
+  Component, ElementRef, HostListener,
+  OnInit, ViewChild
 } from '@angular/core';
 import {ChannelDataService} from "../../services/channel.data-service";
 import {Channel} from "../../models/channel.model";
 import {VideoService} from "../../services/video.service";
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
 
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
   styleUrls: ['./video-list.component.scss']
 })
-export class VideoListComponent implements OnInit {
+export class VideoListComponent implements OnInit, AfterContentInit, AfterViewInit {
+
+  @ViewChild('gridList') gridList!: ElementRef;
+
   list: Channel[] = [];
   activeChannel!: Channel;
   public showList = false;
+  inputFocused = false;
 
   @HostListener('document:keydown', ['$event'])
   onKeydownHandler(event: any) {
     console.log('onKeydownHandler', event.keyCode);
+    this.showList = false;
     if (event.keyCode == 13){
       console.log('onKeydownHandler', 'enter');
+      //this.playIt(this.list[1]);
       this.showList = false;
     }
     if (event.keyCode == 38){
@@ -37,6 +37,8 @@ export class VideoListComponent implements OnInit {
     if (event.keyCode == 40){
       console.log('onKeydownHandler', 'keyDown');
       this.showList = true;
+      //this.inputFocused = true;
+      //setTimeout(() => {this.inputFocused = false});
     }
     if (event.keyCode == 37){
       console.log('onKeydownHandler', 'keyLeft');
@@ -56,30 +58,31 @@ export class VideoListComponent implements OnInit {
     }
   }
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
-  ];
-
   constructor(
     private channelDataService: ChannelDataService,
     private videoService: VideoService,
   ) {}
 
   public ngOnInit() {
+    console.log('ngOnInit');
     this.channelDataService.all()
       .subscribe((ELEMENT_DATA) => {
         this.list = ELEMENT_DATA
-        this.playIt(this.list[4]);
+        this.playIt(this.list[1]);
       });
   }
 
   public playIt(channel: Channel): void {
-
     this.videoService.setCurrentVideoByIndex(channel);
     this.videoService.play();
     this.activeChannel = channel;
+  }
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
   }
 }
