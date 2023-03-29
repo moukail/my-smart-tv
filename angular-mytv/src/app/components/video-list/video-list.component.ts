@@ -14,12 +14,9 @@ import {VideoService} from "../../services/video.service";
 })
 export class VideoListComponent implements OnInit, AfterContentInit, AfterViewInit {
 
-  @ViewChild('gridList') gridList!: ElementRef;
-
   list: Channel[] = [];
   activeChannel!: Channel;
   public showList = false;
-  inputFocused = false;
 
   @HostListener('document:keydown', ['$event'])
   onKeydownHandler(event: any) {
@@ -33,24 +30,22 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
     if (event.keyCode == 38){
       console.log('onKeydownHandler', 'keyUp');
       this.showList = true;
-      setTimeout(() => this.showList = false, 10000);
+      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 40){
       console.log('onKeydownHandler', 'keyDown');
       this.showList = true;
-      setTimeout(() => this.showList = false, 10000);
-      //this.inputFocused = true;
-      //setTimeout(() => {this.inputFocused = false});
+      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 37){
       console.log('onKeydownHandler', 'keyLeft');
       this.showList = true;
-      setTimeout(() => this.showList = false, 10000);
+      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 39){
       console.log('onKeydownHandler', 'keyRight');
       this.showList = true;
-      setTimeout(() => this.showList = false, 10000);
+      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 49){
       console.log('onKeydownHandler', '1');
