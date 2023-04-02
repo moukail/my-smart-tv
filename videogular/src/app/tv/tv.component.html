@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="mat-h1">Dashboard</h1>
+
+  <vg-player ><!--*ngIf="item.source == 'website'"-->
+    <video #myMedia
+           [vgMedia]="$any(myMedia)"
+           crossorigin
+           controls
+    >
+      <source src="https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/2m_monde/hls_video_ts_tuhawxpiemz257adfc/index.m3u8">
+    </video>
+  </vg-player>
+
+  <mat-grid-list [cols]="5" rowHeight="400px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let item of item$ | async">
+      <mat-card class="example-card">
+        <mat-card-content style="padding: 5px; margin-bottom: 0px; flex: none;">
+          <div fxFlex="90">
+            <mat-card-subtitle>title</mat-card-subtitle>
+            <mat-card-title style="font-size: 15px; height: 50px">{{ item.name }}</mat-card-title>
+          </div>
+          <div fxFlex="10">
+            <mat-card-subtitle>views</mat-card-subtitle>
+            <mat-card-title style="font-size: 15px;">10</mat-card-title>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions fxLayoutAlign="flex-end">
+          <button mat-icon-button color="primary">watch</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+</div>

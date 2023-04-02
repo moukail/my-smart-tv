@@ -28,7 +28,6 @@
       shell: |
         systemctl stop nginx
         certbot certonly --standalone --non-interactive --rsa-key-size 2048  --agree-tos --no-eff-email --email moukafih@live.nl -d {{ inventory_hostname }}
-        systemctl start nginx
       when: not letsencrypt_dir.stat.exists
 
     - name: Creating NGINX conf file

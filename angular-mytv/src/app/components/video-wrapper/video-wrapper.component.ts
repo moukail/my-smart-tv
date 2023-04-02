@@ -23,7 +23,7 @@ export class VideoWrapperComponent implements OnInit {
     seeking: () => this.videoService.setLoading(true),
   };
 
-  @ViewChild('video', { static: true }) video!: ElementRef<HTMLVideoElement>;
+  @ViewChild('myMedia', { static: true }) myMedia!: ElementRef<HTMLVideoElement>;
 
   constructor(
     private videoService: VideoService,
@@ -36,8 +36,8 @@ export class VideoWrapperComponent implements OnInit {
       videoListener => console.log(videoListener) //this.video.nativeElement.addEventListener(videoListener, this.videoListeners[videoListener])
     );
 
-    this.video.nativeElement.addEventListener('canplay', this.videoListeners['canplay'])
-    this.video.nativeElement.addEventListener('seeking', this.videoListeners['seeking'])
+    this.myMedia.nativeElement.addEventListener('canplay', this.videoListeners['canplay'])
+    this.myMedia.nativeElement.addEventListener('seeking', this.videoListeners['seeking'])
 
   }
 
@@ -69,7 +69,7 @@ export class VideoWrapperComponent implements OnInit {
     if (Hls.isSupported()) {
       this.loadVideoWithHLS(currentVideo);
     } else {
-      if (this.video.nativeElement.canPlayType('application/vnd.apple.mpegurl')) {
+      if (this.myMedia.nativeElement.canPlayType('application/vnd.apple.mpegurl')) {
         this.loadVideo(currentVideo);
       }
     }
@@ -80,7 +80,7 @@ export class VideoWrapperComponent implements OnInit {
    */
   private playPauseVideo(playing: boolean) {
     this.playing = playing;
-    this.video.nativeElement[playing ? 'play' : 'pause']();
+    this.myMedia.nativeElement[playing ? 'play' : 'pause']();
   }
 
   /**
@@ -97,7 +97,7 @@ export class VideoWrapperComponent implements OnInit {
    */
   private loadVideoWithHLS(currentVideo: string) {
     this.hls.loadSource(currentVideo);
-    this.hls.attachMedia(this.video.nativeElement);
+    this.hls.attachMedia(this.myMedia.nativeElement);
     // this.hls.on(HLS.Events.MANIFEST_PARSED, () => this.video.nativeElement.play());
   }
 
@@ -105,6 +105,6 @@ export class VideoWrapperComponent implements OnInit {
    * Method that loads the video without HLS support
    */
   private loadVideo(currentVideo: string) {
-    this.video.nativeElement.src = currentVideo;
+    this.myMedia.nativeElement.src = currentVideo;
   }
 }
