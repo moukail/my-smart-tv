@@ -1,0 +1,24 @@
+<h1>Fruits</h1>
+
+<app-dashboard></app-dashboard>
+
+<div class="video-list">
+  <mat-selection-list #shoes [multiple]="false" >
+    <mat-list-option *ngFor="let shoe of typesOfShoes"
+                   [ngClass]="{ active: (shoe == selected) }"
+                   (selectedChange)="setItem(shoe)"
+                     [value]="shoe"
+                   class="list-item"
+    >
+      {{shoe}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+
+<p>
+  Option selected: {{shoes.selectedOptions.hasValue() ? shoes.selectedOptions.selected[0].value : 'None'}}
+</p>
+
+<router-outlet></router-outlet>
+
+

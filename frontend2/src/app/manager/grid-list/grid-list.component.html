@@ -1,0 +1,7 @@
+<mat-grid-list cols="4" role="grid" rowHeight="100px" #gridList>
+  <mat-grid-tile #gridItem role="gridcell" *ngFor="let tile of tiles"
+                 [colspan]="tile.cols"
+                 [rowspan]="tile.rows"
+                 [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
+</mat-grid-list>
+

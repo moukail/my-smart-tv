@@ -1,0 +1,9 @@
+<mat-grid-list cols="4" rowHeight="100px" appNavigableList focus>
+  <mat-grid-tile [appNavigableListItem]="tile.text"
+                 *ngFor="let tile of tiles"
+                 [colspan]=1
+                 [rowspan]=1
+                 [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+</mat-grid-list>

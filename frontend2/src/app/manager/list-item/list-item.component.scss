@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #0090FF;
+  transition: all 0.3s;
+  outline: none;
+  color: white;
+}
+
+:host(:focus) {
+  background-color: #28BF5F;
+}
