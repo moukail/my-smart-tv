@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd ./angular-mytv
-          npm install -g @angular/cli
+          npm install -g @angular/cli@15.2.4
           npm install
           ng build
           cd ../

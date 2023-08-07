@@ -46,7 +46,7 @@ export class VideoWrapperComponent implements OnInit {
       if (this.playing) {
         //this.videoService.pause();
       } else {
-        this.videoService.play();
+        //this.videoService.play();
       }
   }
 
