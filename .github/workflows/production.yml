@@ -22,7 +22,7 @@ jobs:
           cd ./angular-mytv
           npm install -g @angular/cli@15.2.4
           npm install
-          ng build
+          ng build --configuration production
           cd ../
 
       - name: rsync deployment
