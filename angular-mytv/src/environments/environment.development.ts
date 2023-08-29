@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8001',
+  apiUrl: 'http://mytv.dev.local',
+  //apiUrl: 'https://moukafih.nl',
 };

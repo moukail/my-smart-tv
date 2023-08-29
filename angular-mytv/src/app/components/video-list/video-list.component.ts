@@ -47,11 +47,11 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
       this.showList = true;
       //setTimeout(() => this.showList = false, 10000);
     }
-    if (event.keyCode == 49){
+    if (event.keyCode == 49 && this.list.length > 0){
       console.log('VideoListComponent onKeydownHandler', '1');
-      this.playIt(this.list[0]);
+       this.playIt(this.list[0]);
     }
-    if (event.keyCode == 50){
+    if (event.keyCode == 50 && this.list.length > 1){
       console.log('VideoListComponent onKeydownHandler', '2');
       this.playIt(this.list[1]);
     }
@@ -68,11 +68,14 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
     this.channelDataService.all()
       .subscribe((ELEMENT_DATA) => {
         this.list = ELEMENT_DATA
-        this.playIt(this.list[1]);
+        this.showList = true;
+        //this.playIt(this.list[1]);
       });
   }
 
   public playIt(channel: Channel): void {
+    console.log('VideoListComponent playIt');
+
     this.videoService.setCurrentVideoByIndex(channel);
     this.videoService.play();
     this.activeChannel = channel;
