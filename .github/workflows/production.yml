@@ -19,8 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./angular-mytv
-          npm install -g @angular/cli@15.2.4
+          cd ./mytv-angular
+          npm install -g @angular/cli@16.2.2
           npm install
           ng build --configuration production
           cd ../
@@ -34,4 +34,4 @@ jobs:
           chmod 600 ./id_ed25519
 
           echo "::group::Deploy"
-          rsync -avz --delete --rsync-path="sudo rsync" -e 'ssh -i ./id_ed25519 -o StrictHostKeyChecking=no' --exclude /id_ed25519 --exclude /.git/ --exclude /.github/ ./angular-mytv/dist/angular-mytv/ ${{vars.SSH_USER}}@${{vars.SSH_HOST}}:${{env.dest}}
+          rsync -avz --delete --rsync-path="sudo rsync" -e 'ssh -i ./id_ed25519 -o StrictHostKeyChecking=no' --exclude /id_ed25519 --exclude /.git/ --exclude /.github/ ./mytv-angular/dist/mytv-angular/ ${{vars.SSH_USER}}@${{vars.SSH_HOST}}:${{env.dest}}
