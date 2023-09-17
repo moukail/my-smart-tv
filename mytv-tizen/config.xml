@@ -2,7 +2,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" version="1.0.0" viewmodes="maximized">
     <tizen:application id="01lVnvGMTp.MyTvProject" package="01lVnvGMTp" required_version="3.0"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
-    <content src="index.html"/>
+    <content src="mytv-angular/index.html"/>
     <icon src="icon.png"/>
 	<name>MyTvProject</name>
 	<tizen:profile name="tv"/>

@@ -1,5 +1,6 @@
 .video-list {
   width: auto;
+  height: 100%;
 
   .header {
     display: flex;
@@ -21,5 +22,10 @@
 
   .list-item.active {
     background-color: #ee6795;
+  }
+
+  .example-viewport {
+    height: 90vh;
+    overflow: hidden;
   }
 }

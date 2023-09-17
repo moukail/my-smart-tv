@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   angular:
-    container_name: angular-tv
+    container_name: mytv-angular
     build:
       context: .docker/angular
       dockerfile: Dockerfile
@@ -9,15 +9,25 @@ services:
       - '4200:4200'
       - '4201:4201'
     volumes:
-      - ./:/var/www
+      - ./mytv-angular:/var/www
+      - ./mytv-tizen:/var/www/dist
+      - ./mytv-webos:/var/www/dist
 
   webos:
-    container_name: webos-tv
+    container_name: mytv-webos
     build:
       context: .docker/webos
       dockerfile: Dockerfile
     volumes:
-      - ./:/var/www
+      - ./mytv-webos:/var/www
+
+  tizen:
+    container_name: mytv-tizen
+    build:
+      context: .docker/tizen
+      dockerfile: Dockerfile
+    volumes:
+      - ./mytv-tizen:/var/www
 
 networks:
   default:

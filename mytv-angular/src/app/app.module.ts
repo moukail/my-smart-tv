@@ -15,6 +15,7 @@ import {NavigableListDirective} from "./directives/NavigableListDirective";
 import {NavigableListItemDirective} from "./directives/NavigableListItemDirective";
 import {A11yModule} from "@angular/cdk/a11y";
 import {FocusDirective} from "./directives/FocusDirective";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {FocusDirective} from "./directives/FocusDirective";
         BrowserModule,
         MatProgressSpinnerModule,
         MatListModule,
+        ScrollingModule,
         EntityStoreModule,
         A11yModule
     ],

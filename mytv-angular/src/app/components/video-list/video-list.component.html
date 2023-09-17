@@ -1,0 +1,11 @@
+<div class="video-list" *ngIf="showList">
+  <h1>Channel List</h1>
+  <cdk-virtual-scroll-viewport appendOnly itemSize="1" class="example-viewport">
+    <mat-selection-list focus [multiple]="false" tabindex="0">
+      <mat-list-option (focus)="onfocus(channel)" class="list-item" *cdkVirtualFor="let channel of list" [value]="channel" (selectedChange)="playIt(channel)"
+                       [ngClass]="{ active: (channel == activeChannel) }">
+        {{channel.name}}
+      </mat-list-option>
+    </mat-selection-list>
+  </cdk-virtual-scroll-viewport>
+</div>

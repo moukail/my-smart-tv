@@ -17,30 +17,32 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
   list: Channel[] = [];
   activeChannel!: Channel;
   public showList = false;
-
+  intervalID: number = 0;
   @HostListener('document:keydown', ['$event'])
   onKeydownHandler(event: any) {
+
+/*    if (this.showList && this.intervalID == 0){
+      this.intervalID = setInterval(() => this.showList = false, 10000);
+    }*/
+
     console.log('VideoListComponent onKeydownHandler', event.keyCode);
     this.showList = false;
+
     if (event.keyCode == 13){
       console.log('VideoListComponent onKeydownHandler', 'enter');
-      //this.playIt(this.list[1]);
       this.showList = false;
     }
     if (event.keyCode == 38){
       console.log('VideoListComponent onKeydownHandler', 'keyUp');
       this.showList = true;
-      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 40){
       console.log('VideoListComponent onKeydownHandler', 'keyDown');
       this.showList = true;
-      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 37){
       console.log('VideoListComponent onKeydownHandler', 'keyLeft');
       this.showList = true;
-      //setTimeout(() => this.showList = false, 10000);
     }
     if (event.keyCode == 39){
       console.log('VideoListComponent onKeydownHandler', 'keyRight');
@@ -87,5 +89,9 @@ export class VideoListComponent implements OnInit, AfterContentInit, AfterViewIn
 
   ngAfterViewInit(): void {
     console.log('VideoListComponent ngAfterViewInit');
+  }
+
+  public onfocus(channel: Channel): void {
+    console.log('VideoListComponent onfocus', channel.name);
   }
 }

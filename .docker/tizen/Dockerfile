@@ -2,8 +2,6 @@ FROM node:20.6-alpine3.18
 
 RUN apk --update --no-cache add bash nano
 
-RUN npm install -g @webosose/ares-cli
-
 WORKDIR /var/www
 
 ADD docker-init.sh /home/

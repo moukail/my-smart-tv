@@ -8,7 +8,7 @@ https://docs.tizen.org/application/tizen-studio/setup/install-sdk/#using-the-cli
 wget https://download.tizen.org/sdk/Installer/tizen-studio_5.1/web-cli_Tizen_Studio_5.1_ubuntu-64.bin
 
 chmod a+x ./web-cli_Tizen_Studio_5.1_ubuntu-64.bin
-./web-cli_Tizen_Studio_5.1_ubuntu-64.bin --accept-license	
+./web-cli_Tizen_Studio_5.1_ubuntu-64.bin --accept-license
 export PATH=$PATH:~/tizen-studio/tools/ide/bin
 export PATH=$PATH:~/tizen-studio/tools/emulator/bin
 tizen cli-config --list
@@ -84,6 +84,8 @@ https://developer.samsung.com/smarttv/develop/extension-libraries/smart-view-sdk
 ~/tizen-studio/tools/sdb -s 192.168.1.227 shell 0 execute 01lVnvGMTp.MyTvProject
 ~/tizen-studio/tools/sdb -s 192.168.1.227 shell 0 debug 01lVnvGMTp.MyTvProject
 ```
+
+go to http://192.168.1.227:<port>
 
 ### Extra
 #### Generate author certificate

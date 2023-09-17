@@ -5,6 +5,8 @@ https://github.com/AppImage/AppImageKit/wiki/FUSE
 sudo apt install libfuse2
 ``
 
+https://webostv.developer.lge.com/develop/tools/simulator-installation
+
 ``
 chmod a+x ./webOS_TV_23_Simulator_1.3.0.appimage
 ``
