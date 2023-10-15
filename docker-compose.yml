@@ -18,6 +18,8 @@ services:
     build:
       context: .docker/webos
       dockerfile: Dockerfile
+    ports:
+      - '6622:6622'
     volumes:
       - ./mytv-webos:/var/www
 

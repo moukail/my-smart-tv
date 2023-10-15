@@ -26,20 +26,36 @@ npm install -g @webosose/ares-cli
 
 ### Create an app with CLI
 ``
-ares-generate -t hosted_webapp -p "id=nl.moukafih.webos-mytv" webos-mytv
+ares-generate -t hosted_webapp -p "id=nl.moukafih.my-smart-tv" mytv-webos
 ``
 
 ### Package the app
 ``
-ares-package ./webos-mytv
+ares-package ./mytv-webos
 ``
+
+### List of Devices
+```bash
+docker exec -it mytv-webos ares-launch --device-list
+```
+### Change device IP address
+```bash
+docker exec -it mytv-webos ares-setup-device
+```
 
 ### Install the package file to the TV device
-``
-ares-install -d emulator nl.moukafih.webos-mytv_1.0.0_all.ipk
-``
+```bash
+ares-install -d emulator nl.moukafih.my-smart-tv_1.0.0_all.ipk
+```
+
+```bash
+docker exec -it mytv-webos ares-install -d emulator nl.moukafih.my-smart-tv_1.0.0_all.ipk
+```
 
 ### Launch the app on the TV device
-``
+```bash
 ares-launch -d emulator nl.moukafih.webos-mytv
-``
+```
+
+### Install App on TV
+https://webostv.developer.lge.com/develop/getting-started/developer-mode-app#turning-developer-mode-on
