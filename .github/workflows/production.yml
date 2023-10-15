@@ -27,7 +27,7 @@ jobs:
 
       - name: rsync deployment
         env:
-          dest: '/var/www/webos-mytv.moukafih.nl'
+          dest: '/var/www/my-smart-tv.moukafih.nl'
         run: |
           echo "::group::Prepare Certificate"
           echo "${{secrets.OPENSSH_KEY}}" > id_ed25519
